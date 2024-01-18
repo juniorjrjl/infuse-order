@@ -79,42 +79,42 @@ public class FindAllOrderDomain {
         private OffsetDateTime createdAt;
         private Long amount;
 
-        public FindAllOrderDomainBuilder id(Long id) {
+        public FindAllOrderDomainBuilder id(final Long id) {
             this.id = id;
             return this;
         }
 
-        public FindAllOrderDomainBuilder controlId(Long controlId) {
+        public FindAllOrderDomainBuilder controlId(final Long controlId) {
             this.controlId = controlId;
             return this;
         }
 
-        public FindAllOrderDomainBuilder discount(BigDecimal discount) {
+        public FindAllOrderDomainBuilder discount(final BigDecimal discount) {
             this.discount = discount;
             return this;
         }
 
-        public FindAllOrderDomainBuilder subTotal(BigDecimal subTotal) {
+        public FindAllOrderDomainBuilder subTotal(final BigDecimal subTotal) {
             this.subTotal = subTotal;
             return this;
         }
 
-        public FindAllOrderDomainBuilder total(BigDecimal total) {
+        public FindAllOrderDomainBuilder total(final BigDecimal total) {
             this.total = total;
             return this;
         }
 
-        public FindAllOrderDomainBuilder clientId(Long clientId) {
+        public FindAllOrderDomainBuilder clientId(final Long clientId) {
             this.clientId = clientId;
             return this;
         }
 
-        public FindAllOrderDomainBuilder createdAt(OffsetDateTime createdAt) {
+        public FindAllOrderDomainBuilder createdAt(final OffsetDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-        public FindAllOrderDomainBuilder amount(Long amount) {
+        public FindAllOrderDomainBuilder amount(final Long amount) {
             this.amount = amount;
             return this;
         }

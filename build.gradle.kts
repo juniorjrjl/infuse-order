@@ -1,6 +1,10 @@
+import com.adarshr.gradle.testlogger.theme.ThemeType
+
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.adarshr.test-logger") version "4.0.0"
+    id ("jacoco")
 }
 
 group = "org.example"
@@ -64,6 +68,22 @@ dependencies {
 
 }
 
+testlogger {
+    testlogger {
+        theme = ThemeType.MOCHA_PARALLEL
+        showExceptions = true
+        slowThreshold = 2000
+        showSummary = true
+        showPassed = true
+        showSkipped = true
+        showFailed = true
+        showStandardStreams = true
+        showPassedStandardStreams = true
+        showSkippedStandardStreams =  true
+        showFailedStandardStreams = true
+    }
+}
+
 tasks.jar{
     manifest.attributes["Main-Class"] = "br.com.infuse.Main"
 }
@@ -78,4 +98,5 @@ sourceSets{
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
 }

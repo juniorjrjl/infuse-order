@@ -115,7 +115,7 @@ public class ErrorRoute {
             res.status(409);
             log.error("ControlIdInUseException", ex);
             res.body(toResponse(ErrorResponse.builder()
-                    .status(400)
+                    .status(409)
                     .title("A request have errors")
                     .details(ex.getMessage())
                     .build(), req.contentType()));

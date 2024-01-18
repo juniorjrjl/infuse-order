@@ -1,6 +1,5 @@
 package br.com.infuse.util.datafaker.bot.domain;
 
-import br.com.infuse.core.domain.insert.OrderItemInsertDomain;
 import br.com.infuse.core.domain.insert.OrderItemInsertedDomain;
 import br.com.infuse.util.datafaker.bot.AbstractBot;
 import lombok.AllArgsConstructor;

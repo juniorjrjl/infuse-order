@@ -25,6 +25,7 @@ import br.com.infuse.core.port.OrderPort;
 import br.com.infuse.core.service.OrderQueryService;
 import br.com.infuse.core.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Key;
@@ -67,7 +68,9 @@ public class ApiModule extends AbstractModule {
 
     @Provides
     public XmlMapper xmlMapper(){
-        XmlMapper xmlMapper = new XmlMapper();
+        JacksonXmlModule module = new JacksonXmlModule();
+        module.setDefaultUseWrapper(false);
+        XmlMapper xmlMapper = new XmlMapper(module);
         xmlMapper.disable(WRITE_DATES_AS_TIMESTAMPS);
         xmlMapper.findAndRegisterModules();
         return xmlMapper;

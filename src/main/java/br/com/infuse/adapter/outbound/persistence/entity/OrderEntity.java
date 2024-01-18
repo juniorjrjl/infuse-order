@@ -21,7 +21,6 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
 

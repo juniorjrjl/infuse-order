@@ -1,16 +1,12 @@
 package br.com.infuse.util.datafaker.bot.entity;
 
 import br.com.infuse.adapter.outbound.persistence.entity.ClientEntity;
-import br.com.infuse.adapter.outbound.persistence.entity.OrderEntity;
-import br.com.infuse.adapter.outbound.persistence.entity.OrderItemEntity;
 import br.com.infuse.util.datafaker.bot.AbstractBot;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.With;
 
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.Set;
 import java.util.function.Supplier;
 
 import static lombok.AccessLevel.PRIVATE;

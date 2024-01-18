@@ -1,7 +1,6 @@
 package br.com.infuse.util.datafaker.bot.response;
 
 import br.com.infuse.adapter.inbound.route.response.FindAllOrderResponse;
-import br.com.infuse.core.domain.findall.FindAllOrderDomain;
 import br.com.infuse.util.datafaker.bot.AbstractBot;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

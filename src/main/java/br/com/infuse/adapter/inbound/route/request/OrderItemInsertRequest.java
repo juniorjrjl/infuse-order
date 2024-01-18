@@ -18,12 +18,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class OrderItemInsertRequest {
 
-    @NotBlank
+    @NotBlank(message = "informe o nome do item do pedido")
     @JsonProperty("name")
     private String name;
 
     @Positive
-    @Digits(integer = 13, fraction = 2)
+    @Digits(integer = 13, fraction = 2, message = "informe um valor monetário válido")
     @JsonProperty("value")
     private BigDecimal value;
 

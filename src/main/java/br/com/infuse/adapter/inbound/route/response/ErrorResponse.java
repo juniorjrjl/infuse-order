@@ -8,7 +8,7 @@ import lombok.Singular;
 
 import java.util.List;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 
 @Getter
 @Builder
@@ -25,7 +25,7 @@ public class ErrorResponse {
 
     @Singular
     @JsonProperty("fields")
-    @JsonInclude(NON_NULL)
+    @JsonInclude(NON_EMPTY)
     private final List<FieldErrorResponse> fields;
 
 }

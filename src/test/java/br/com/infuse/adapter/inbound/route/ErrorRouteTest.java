@@ -2,9 +2,11 @@ package br.com.infuse.adapter.inbound.route;
 
 import br.com.infuse.adapter.inbound.route.response.ErrorResponse;
 import br.com.infuse.adapter.serializer.ISerializer;
+import br.com.infuse.core.exception.ControlIdInUseException;
 import br.com.infuse.core.exception.InfuseException;
 import br.com.infuse.core.exception.OrderNotFoundException;
 import br.com.infuse.core.exception.ValidatorException;
+import br.com.infuse.core.exception.ValidatorExceptionField;
 import br.com.infuse.util.ResponseStub;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import spark.Request;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -92,7 +95,11 @@ class ErrorRouteTest {
         when(request.contentType()).thenReturn("Application/json");
         when(errorResponseSerializer.toResponse(any(ErrorResponse.class), eq("Application/json"))).thenReturn("{'error': '400'}");
         ResponseStub response = new ResponseStub();
-        errorRoute.validatorExceptionHandler().handle(new ValidatorException("", Collections.emptyList()), request, response);
+        List<ValidatorExceptionField> fields = Collections.singletonList(ValidatorExceptionField.builder()
+                        .field("stub")
+                        .message("stub error")
+                .build());
+        errorRoute.validatorExceptionHandler().handle(new ValidatorException("error", fields), request, response);
 
         assertThat(response.getHeaders().keySet()).contains("Content-Type");
         assertThat(response.getHeaders().values()).contains("Application/json");
@@ -109,6 +116,19 @@ class ErrorRouteTest {
         assertThat(response.getHeaders().keySet()).contains("Content-Type");
         assertThat(response.getHeaders().values()).contains("Application/json");
         assertThat(response.getStatusCode()).isEqualTo(400);
+    }
+
+    @Test
+    void controlIdInUseException() throws JsonProcessingException {
+        when(request.contentType()).thenReturn("Application/json");
+        when(errorResponseSerializer.toResponse(any(ErrorResponse.class), eq("Application/json"))).thenReturn("{'error': '409'}");
+        ResponseStub response = new ResponseStub();
+
+        errorRoute.controlIdInUseException().handle(new ControlIdInUseException(""), request, response);
+
+        assertThat(response.getHeaders().keySet()).contains("Content-Type");
+        assertThat(response.getHeaders().values()).contains("Application/json");
+        assertThat(response.getStatusCode()).isEqualTo(409);
     }
 
 }

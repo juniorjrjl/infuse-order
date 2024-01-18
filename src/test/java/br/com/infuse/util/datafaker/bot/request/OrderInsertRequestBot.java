@@ -11,7 +11,6 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static java.time.ZoneOffset.UTC;
 import static lombok.AccessLevel.PRIVATE;
 
 @With

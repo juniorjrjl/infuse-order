@@ -1,10 +1,5 @@
 package br.com.infuse.core.domain.insert;
 
-import org.hibernate.validator.constraints.Currency;
-
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class OrderItemInsertDomain {

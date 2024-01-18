@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 
 @AllArgsConstructor(onConstructor = @__({@Inject}))
 public class ClientRepository implements ClientPort {
@@ -15,13 +14,7 @@ public class ClientRepository implements ClientPort {
 
     @Override
     public boolean hasClientId(final Long clientId) {
-        boolean found = true;
-        try {
-            entityManager.find(ClientEntity.class, clientId);
-        }catch (NoResultException ex){
-            found = false;
-        }
-        return found;
+        return entityManager.find(ClientEntity.class, clientId) != null;
     }
 
 }
