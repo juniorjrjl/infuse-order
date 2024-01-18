@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.2.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: infuse_order
+      MYSQL_PASSWORD: infuse_order
+      MYSQL_DATABASE: infuse_order
+    ports:
+      - "3306:3306"
+    networks:
+      - infuse-order-net
+
+networks:
+  infuse-order-net:
+    name: infuse-order-net
+    external: true
+
+volumes:
+  db:

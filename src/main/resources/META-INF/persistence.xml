@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="infuse-PU">
+        <class>br.com.infuse.adapter.outbound.persistence.entity.OrderEntity</class>
+        <class>br.com.infuse.adapter.outbound.persistence.entity.ItemEntity</class>
+        <class>br.com.infuse.adapter.outbound.persistence.entity.OrderItemEntity</class>
+        <class>br.com.infuse.adapter.outbound.persistence.entity.ClientEntity</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/infuse_order?createDatabaseIfNotExist=true&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true" />
+            <property name="javax.persistence.jdbc.user" value="infuse_order" />
+            <property name="javax.persistence.jdbc.password" value="infuse_order" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="javax.persistence.schema-generation.database.action" value="validate"/>
+
+            <!--property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/-->
+        </properties>
+    </persistence-unit>
+</persistence>

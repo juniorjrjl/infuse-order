@@ -1,0 +1,48 @@
+package br.com.infuse.util.datafaker.bot.domain;
+
+import br.com.infuse.core.domain.insert.OrderInsertDomain;
+import br.com.infuse.core.domain.insert.OrderItemInsertDomain;
+import br.com.infuse.util.datafaker.bot.AbstractBot;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.With;
+
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.function.Supplier;
+
+import static lombok.AccessLevel.PRIVATE;
+
+@With
+@AllArgsConstructor(access = PRIVATE)
+@NoArgsConstructor(access = PRIVATE)
+public class OrderInsertDomainBot extends AbstractBot<OrderInsertDomain> {
+
+    private Supplier<Long> controlId = () -> faker.number().randomNumber();
+    private Supplier<Long> clientId = () -> faker.number().randomNumber();
+    private Supplier<OffsetDateTime> createdAt = () -> faker.offsetDateTime().birthday();;
+    private Supplier<BigDecimal> discount = () -> faker.monetary().random();
+    private Supplier<BigDecimal> subTotal = () -> faker.monetary().random();
+    private Supplier<BigDecimal> total = () -> faker.monetary().random();
+    private Supplier<List<OrderItemInsertDomain>> items = () -> faker.domainApp()
+            .getOrderItemInsertDomainBot().build(faker.number().randomDigitNotZero());
+
+    public static OrderInsertDomainBot builder(){
+        return new OrderInsertDomainBot();
+    }
+
+    @Override
+    public OrderInsertDomain build() {
+        return OrderInsertDomain.builder()
+                .controlId(controlId.get())
+                .clientId(clientId.get())
+                .createdAt(createdAt.get())
+                .discount(discount.get())
+                .subTotal(subTotal.get())
+                .total(total.get())
+                .items((items.get()))
+                .build();
+    }
+
+}
